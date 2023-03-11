@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4tvi2paprxm4"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_4ikry"]
+[ext_resource type="Script" path="res://ChordedController.gd" id="2_s663h"]
+[ext_resource type="Texture2D" uid="uid://di8ha6ppvagus" path="res://icon.svg" id="3_c1jtg"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("1_4ikry")
+
+[node name="ChordedController" type="Node2D" parent="Player"]
+script = ExtResource("2_s663h")
+
+[node name="Sprite" type="Sprite2D" parent="Player"]
+texture = ExtResource("3_c1jtg")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="Turret" type="CharacterBody2D" parent="."]
+position = Vector2(447, 318)
+
+[node name="Icon" type="Sprite2D" parent="Turret"]
+texture = ExtResource("3_c1jtg")
