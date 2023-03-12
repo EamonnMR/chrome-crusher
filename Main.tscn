@@ -1,10 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4tvi2paprxm4"]
+[gd_scene load_steps=16 format=3 uid="uid://c4tvi2paprxm4"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_4ikry"]
 [ext_resource type="Script" path="res://ChordedController.gd" id="2_s663h"]
 [ext_resource type="Texture2D" uid="uid://di8ha6ppvagus" path="res://icon.svg" id="3_c1jtg"]
+[ext_resource type="Script" path="res://Weapon.gd" id="4_43p20"]
+[ext_resource type="Script" path="res://Spell.gd" id="4_tumtf"]
+[ext_resource type="Texture2D" uid="uid://u5fhp6x4i8dl" path="res://assets/j_w_bjerk_painterly_spell_cc_by/lighting-fire-1.png" id="4_xf5rn"]
+[ext_resource type="Script" path="res://SpellPanel.gd" id="5_4bauh"]
+[ext_resource type="Texture2D" uid="uid://bkfmdw7xo5a01" path="res://assets/j_w_bjerk_painterly_spell_cc_by/slice-spirit-1.png" id="5_f1cky"]
+[ext_resource type="Texture2D" uid="uid://btcf0258dpbpq" path="res://assets/j_w_bjerk_painterly_spell_cc_by/needles-acid-2.png" id="5_ke3ro"]
+[ext_resource type="Texture2D" uid="uid://bq1qghqaagnt2" path="res://assets/red_shield.png" id="6_4gwj0"]
+[ext_resource type="Texture2D" uid="uid://0uivkefg4tdo" path="res://assets/j_w_bjerk_painterly_spell_cc_by/beam-blue-2.png" id="6_18veg"]
+[ext_resource type="Texture2D" uid="uid://k58q0fxetlin" path="res://assets/green_shield.png" id="7_4thjf"]
+[ext_resource type="Texture2D" uid="uid://by7oi0jxspkgh" path="res://assets/blue_shield.png" id="8_5pkoi"]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7hf5g"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8my3m"]
+font_size = 25
+
+[node name="World" type="Node2D"]
 
 [node name="Player" type="CharacterBody2D" parent="."]
 script = ExtResource("1_4ikry")
@@ -15,6 +30,37 @@ script = ExtResource("2_s663h")
 [node name="Sprite" type="Sprite2D" parent="Player"]
 texture = ExtResource("3_c1jtg")
 
+[node name="Weapon" type="Node2D" parent="Player/Sprite"]
+script = ExtResource("4_43p20")
+
+[node name="Spell_R" type="Node2D" parent="Player/Sprite"]
+script = ExtResource("4_tumtf")
+
+[node name="ShieldGraphic" type="Sprite2D" parent="Player/Sprite/Spell_R"]
+visible = false
+texture = ExtResource("6_4gwj0")
+
+[node name="Timer" type="Timer" parent="Player/Sprite/Spell_R"]
+one_shot = true
+
+[node name="Spell_G" type="Node2D" parent="Player/Sprite"]
+script = ExtResource("4_tumtf")
+
+[node name="ShieldGraphic" type="Sprite2D" parent="Player/Sprite/Spell_G"]
+visible = false
+texture = ExtResource("7_4thjf")
+
+[node name="Timer" type="Timer" parent="Player/Sprite/Spell_G"]
+
+[node name="Spell_B" type="Node2D" parent="Player/Sprite"]
+script = ExtResource("4_tumtf")
+
+[node name="ShieldGraphic" type="Sprite2D" parent="Player/Sprite/Spell_B"]
+visible = false
+texture = ExtResource("8_5pkoi")
+
+[node name="Timer" type="Timer" parent="Player/Sprite/Spell_B"]
+
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="Turret" type="CharacterBody2D" parent="."]
@@ -22,3 +68,110 @@ position = Vector2(447, 318)
 
 [node name="Icon" type="Sprite2D" parent="Turret"]
 texture = ExtResource("3_c1jtg")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="SpellPanel" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_4bauh")
+
+[node name="SpellR" type="TextureRect" parent="CanvasLayer/SpellPanel"]
+material = SubResource("CanvasItemMaterial_7hf5g")
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 437.0
+offset_top = 487.0
+offset_right = 693.0
+offset_bottom = 743.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.483614, 0.483614)
+texture = ExtResource("4_xf5rn")
+
+[node name="Label" type="Label" parent="CanvasLayer/SpellPanel"]
+layout_mode = 0
+offset_left = 457.0
+offset_top = 527.0
+offset_right = 497.0
+offset_bottom = 565.0
+text = "Q"
+label_settings = SubResource("LabelSettings_8my3m")
+
+[node name="Weapon" type="TextureRect" parent="CanvasLayer/SpellPanel"]
+material = SubResource("CanvasItemMaterial_7hf5g")
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 303.0
+offset_top = 490.0
+offset_right = 559.0
+offset_bottom = 746.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.483614, 0.483614)
+texture = ExtResource("5_f1cky")
+
+[node name="SpellG" type="TextureRect" parent="CanvasLayer/SpellPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 568.0
+offset_top = 487.0
+offset_right = 824.0
+offset_bottom = 743.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.474796, 0.474796)
+texture = ExtResource("5_ke3ro")
+
+[node name="Label2" type="Label" parent="CanvasLayer/SpellPanel"]
+layout_mode = 0
+offset_left = 596.0
+offset_top = 527.0
+offset_right = 636.0
+offset_bottom = 565.0
+text = "E"
+label_settings = SubResource("LabelSettings_8my3m")
+
+[node name="SpellB" type="TextureRect" parent="CanvasLayer/SpellPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 701.0
+offset_top = 484.0
+offset_right = 957.0
+offset_bottom = 740.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.493684, 0.493684)
+texture = ExtResource("6_18veg")
+
+[node name="Label3" type="Label" parent="CanvasLayer/SpellPanel"]
+layout_mode = 0
+offset_left = 733.0
+offset_top = 528.0
+offset_right = 773.0
+offset_bottom = 566.0
+text = "R"
+label_settings = SubResource("LabelSettings_8my3m")
+
+[connection signal="timeout" from="Player/Sprite/Spell_R/Timer" to="Player/Sprite/Spell_R" method="_on_timer_timeout"]
+[connection signal="timeout" from="Player/Sprite/Spell_G/Timer" to="Player/Sprite/Spell_G" method="_on_timer_timeout"]
+[connection signal="timeout" from="Player/Sprite/Spell_B/Timer" to="Player/Sprite/Spell_B" method="_on_timer_timeout"]

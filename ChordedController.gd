@@ -56,3 +56,12 @@ func get_motion() -> Vector2:
 		return Vector2(0,0)
 	
 	return Vector2(1, 0).rotated(ideal_face)
+
+func selected_color() -> Util.COLOR:
+	if Input.is_key_pressed(KEY_Q):
+		return Util.COLOR.RED
+	if Input.is_key_pressed(KEY_E):
+		return Util.COLOR.GREEN
+	if Input.is_key_pressed(KEY_R):
+		return Util.COLOR.BLUE
+	return Util.COLOR.COLORLESS
