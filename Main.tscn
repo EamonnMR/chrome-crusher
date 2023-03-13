@@ -1,19 +1,30 @@
 [gd_scene load_steps=5 format=3 uid="uid://c4tvi2paprxm4"]
 
 [ext_resource type="PackedScene" uid="uid://ci5ryfv1dtg7p" path="res://player.tscn" id="3_6mvui"]
-[ext_resource type="Texture2D" uid="uid://di8ha6ppvagus" path="res://icon.svg" id="3_c1jtg"]
 [ext_resource type="PackedScene" uid="uid://p4el6x1jfav3" path="res://ui/hud/hud.tscn" id="3_gk6yj"]
+[ext_resource type="PackedScene" uid="uid://bhu1vnfq82ex4" path="res://entities/foe.tscn" id="4_00mtn"]
 [ext_resource type="PackedScene" uid="uid://btip2mr61iw3i" path="res://entities/placeholder_wall.tscn" id="4_btjl6"]
 
 [node name="World" type="Node2D"]
 
-[node name="Turret@Icon" type="Sprite2D" parent="."]
-position = Vector2(839, 222)
-texture = ExtResource("3_c1jtg")
-
 [node name="HUD" parent="." instance=ExtResource("3_gk6yj")]
-visible = false
 
 [node name="Player" parent="." instance=ExtResource("3_6mvui")]
 
 [node name="Wall" parent="." instance=ExtResource("4_btjl6")]
+position = Vector2(138, 220)
+rotation = -0.917246
+
+[node name="Wall2" parent="." instance=ExtResource("4_btjl6")]
+position = Vector2(296, 14)
+rotation = -0.917246
+
+[node name="Wall3" parent="." instance=ExtResource("4_btjl6")]
+position = Vector2(696, -190)
+rotation = 0.0106161
+
+[node name="Wall4" parent="." instance=ExtResource("4_btjl6")]
+position = Vector2(954, -187)
+rotation = 0.0106161
+
+[node name="Foe" parent="." instance=ExtResource("4_00mtn")]

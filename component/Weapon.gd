@@ -4,6 +4,11 @@ extends Node2D
 
 var in_melee_area = []
 
+@export_flags_2d_physics var mask: int
+
+func _ready():
+	$MeleeArea.collision_mask = mask
+
 func shoot():
 	for body in in_melee_area:
 		if body.has_method("damage"):

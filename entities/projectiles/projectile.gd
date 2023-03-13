@@ -14,7 +14,7 @@ func _physics_process(_delta):
 
 func _on_area_2d_body_entered(body):
 	if body.has_method("damage"):
-		body.damage
+		body.damage()
 	queue_free()
 
 func _on_Timer_timeout():

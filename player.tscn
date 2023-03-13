@@ -20,6 +20,7 @@ script = ExtResource("1_nlh1m")
 texture = ExtResource("2_aay6k")
 
 [node name="Weapon" parent="Sprite" instance=ExtResource("3_kb8h1")]
+mask = 4
 
 [node name="Spell_R" parent="Sprite" instance=ExtResource("4_g0jnr")]
 color = 1

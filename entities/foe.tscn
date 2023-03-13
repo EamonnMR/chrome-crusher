@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhu1vnfq82ex4"]
+
+[ext_resource type="Script" path="res://Foe.gd" id="1_ybyg4"]
+[ext_resource type="Texture2D" uid="uid://di8ha6ppvagus" path="res://icon.svg" id="2_3r14v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oionb"]
+size = Vector2(128, 127)
+
+[node name="Foe" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_ybyg4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(839, 222.5)
+shape = SubResource("RectangleShape2D_oionb")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(839, 222)
+texture = ExtResource("2_3r14v")
