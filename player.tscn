@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ci5ryfv1dtg7p"]
+[gd_scene load_steps=10 format=3 uid="uid://ci5ryfv1dtg7p"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_nlh1m"]
 [ext_resource type="Texture2D" uid="uid://di8ha6ppvagus" path="res://icon.svg" id="2_aay6k"]
@@ -9,7 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://cq3ts2w8upfx1" path="res://entities/projectiles/proj_green.tscn" id="6_1021j"]
 [ext_resource type="PackedScene" uid="uid://cjagpogc8v5cn" path="res://entities/projectiles/proj_blue.tscn" id="7_hn20c"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1y61n"]
+radius = 56.0089
+
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 0
 script = ExtResource("1_nlh1m")
 
 [node name="Sprite" type="Sprite2D" parent="."]
@@ -36,3 +40,6 @@ projectile_mask = 5
 script = ExtResource("5_ewnqr")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1y61n")
