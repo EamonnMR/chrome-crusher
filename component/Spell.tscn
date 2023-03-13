@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://buv4q4a6n6a41"]
+
+[ext_resource type="Script" path="res://component/Spell.gd" id="1_3isj5"]
+
+[node name="Spell" type="Node2D"]
+script = ExtResource("1_3isj5")
+
+[node name="ShieldGraphic" type="Sprite2D" parent="."]
+visible = false
+
+[node name="ShieldTimer" type="Timer" parent="."]
+
+[node name="Cooldown" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ShieldTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://t8jbdsossrdy"]
+
+[ext_resource type="PackedScene" uid="uid://dpi5lfgi7xbly" path="res://entities/projectiles/projectile.tscn" id="1_8kn8d"]
+[ext_resource type="Texture2D" uid="uid://b75cowss8jr2l" path="res://assets/red_blob.png" id="2_4vl8c"]
+
+[node name="Node3D" instance=ExtResource("1_8kn8d")]
+color = 1
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_4vl8c")

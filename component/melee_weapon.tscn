@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxswa1i4ft2xs"]
+
+[ext_resource type="Script" path="res://component/Weapon.gd" id="1_tyfb0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4w284"]
+radius = 35.0
+height = 120.0
+
+[node name="MeleeWeapon" type="Node2D"]
+script = ExtResource("1_tyfb0")
+
+[node name="MeleeArea" type="Area2D" parent="."]
+position = Vector2(-1, -72)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeArea"]
+position = Vector2(0, -20)
+rotation = -1.55666
+shape = SubResource("CapsuleShape2D_4w284")
+
+[connection signal="body_entered" from="MeleeArea" to="." method="_on_melee_area_body_entered"]
+[connection signal="body_exited" from="MeleeArea" to="." method="_on_melee_area_body_exited"]

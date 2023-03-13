@@ -1,0 +1,38 @@
+[gd_scene load_steps=9 format=3 uid="uid://ci5ryfv1dtg7p"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_nlh1m"]
+[ext_resource type="Texture2D" uid="uid://di8ha6ppvagus" path="res://icon.svg" id="2_aay6k"]
+[ext_resource type="PackedScene" uid="uid://bxswa1i4ft2xs" path="res://component/melee_weapon.tscn" id="3_kb8h1"]
+[ext_resource type="PackedScene" uid="uid://buv4q4a6n6a41" path="res://component/Spell.tscn" id="4_g0jnr"]
+[ext_resource type="Script" path="res://component/ChordedController.gd" id="5_ewnqr"]
+[ext_resource type="PackedScene" uid="uid://t8jbdsossrdy" path="res://entities/projectiles/proj_red.tscn" id="5_fia3n"]
+[ext_resource type="PackedScene" uid="uid://cq3ts2w8upfx1" path="res://entities/projectiles/proj_green.tscn" id="6_1021j"]
+[ext_resource type="PackedScene" uid="uid://cjagpogc8v5cn" path="res://entities/projectiles/proj_blue.tscn" id="7_hn20c"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_nlh1m")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_aay6k")
+
+[node name="Weapon" parent="Sprite" instance=ExtResource("3_kb8h1")]
+
+[node name="Spell_R" parent="Sprite" instance=ExtResource("4_g0jnr")]
+color = 1
+projectile_scene = ExtResource("5_fia3n")
+projectile_mask = 5
+
+[node name="Spell_G" parent="Sprite" instance=ExtResource("4_g0jnr")]
+color = 2
+projectile_scene = ExtResource("6_1021j")
+projectile_mask = 5
+
+[node name="Spell_B" parent="Sprite" instance=ExtResource("4_g0jnr")]
+color = 3
+projectile_scene = ExtResource("7_hn20c")
+projectile_mask = 5
+
+[node name="ChordedController" type="Node2D" parent="."]
+script = ExtResource("5_ewnqr")
+
+[node name="Camera2D" type="Camera2D" parent="."]
