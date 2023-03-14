@@ -25,9 +25,26 @@ func _physics_process(delta):
 	_handle_shooting()
 	move_and_slide()
 
-
 func _handle_shooting():
 	if Input.is_action_pressed("shoot"):
 		spells[selected_color].shoot()
 	if Input.is_action_pressed("block"):
 		spells[selected_color].block()
+
+func damage(color):
+	dead()
+	
+func dead():
+	get_tree().get_root().get_node("World/HUD/Restart").enable()
+	var camera = Camera2D.new()
+	camera.position = global_position
+	get_node("../").add_child(camera)
+	camera.make_current()
+	queue_free()
+
+# TODO: Make this color-specific?
+func enable_hits():
+	collision_layer = 2 #player
+
+func disable_hits():
+	collision_layer = 0

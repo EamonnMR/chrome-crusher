@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://5phh6uk2u508"]
+
+[ext_resource type="Script" path="res://entities/red_death_wall.gd" id="1_leakx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c1smt"]
+size = Vector2(266, 20)
+
+[sub_resource type="Gradient" id="Gradient_8s3fc"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y122f"]
+gradient = SubResource("Gradient_8s3fc")
+width = 265
+height = 23
+
+[node name="Wall" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_leakx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_c1smt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_y122f")
+
+[connection signal="area_entered" from="." to="." method="_on_object_entered"]
+[connection signal="body_entered" from="." to="." method="_on_object_entered"]

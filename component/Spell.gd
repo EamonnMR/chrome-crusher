@@ -1,14 +1,19 @@
-extends Node2D
+extends Area2D
 
 @export var color: Util.COLOR
 @export var projectile_scene: PackedScene
 @export var projectile_velocity: float = 10
 @export var spread: float
-@export var damage: float
+@export var damage_amount: float
 @export_flags_2d_physics var projectile_mask: int
 
 var cooldown = false
 @onready var parent = get_node("../../")
+
+func _ready():
+	add_child(
+		parent.get_node("CollisionShape2D").duplicate()
+	)
 
 func shoot():
 	if not cooldown:
@@ -20,9 +25,19 @@ func block():
 	# TODO: Block projectiles
 	$ShieldGraphic.show()
 	$Timer.start()
+	parent.disable_hits()
+	collision_layer = 2
+
+func damage(dmg_color: Util.COLOR):
+	# TODO: Bounce, etc?
+	if color == dmg_color:
+		parent.damage(color)
+	
 
 func _on_timer_timeout():
 	$ShieldGraphic.hide()
+	collision_layer = 0
+	parent.enable_hits()
 
 func _start_cooldown():
 	cooldown = true

@@ -8,12 +8,17 @@ extends Control
 }
 
 func _process(delta):
-	var current_color = get_tree().get_root().get_node("World/Player").selected_color
-	
-	for icon in icons.values():
-		mod_deselected(icon)
-	
-	mod_selected(icons[current_color])
+	if get_tree().get_root().get_node("World").has_node("Player"):
+		show()
+			
+		var current_color = get_tree().get_root().get_node("World/Player").selected_color
+		
+		for icon in icons.values():
+			mod_deselected(icon)
+		
+		mod_selected(icons[current_color])
+	else:
+		hide()
 	
 func mod_selected(tex: TextureRect):
 	tex.modulate.a = 1.0

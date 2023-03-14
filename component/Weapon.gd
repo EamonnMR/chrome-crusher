@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var color: Util.COLOR
+@export var color: Util.COLOR = Util.COLOR.COLORLESS
 
 var in_melee_area = []
 
@@ -12,7 +12,7 @@ func _ready():
 func shoot():
 	for body in in_melee_area:
 		if body.has_method("damage"):
-			body.damage()
+			body.damage(color)
 
 func block():
 	pass

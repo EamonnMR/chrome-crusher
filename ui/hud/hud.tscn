@@ -1,15 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://p4el6x1jfav3"]
+[gd_scene load_steps=10 format=3 uid="uid://p4el6x1jfav3"]
 
 [ext_resource type="Script" path="res://SpellPanel.gd" id="1_moppp"]
 [ext_resource type="Texture2D" uid="uid://u5fhp6x4i8dl" path="res://assets/j_w_bjerk_painterly_spell_cc_by/lighting-fire-1.png" id="2_wwqi3"]
 [ext_resource type="Texture2D" uid="uid://bkfmdw7xo5a01" path="res://assets/j_w_bjerk_painterly_spell_cc_by/slice-spirit-1.png" id="3_gdyqr"]
 [ext_resource type="Texture2D" uid="uid://btcf0258dpbpq" path="res://assets/j_w_bjerk_painterly_spell_cc_by/needles-acid-2.png" id="4_l7knb"]
 [ext_resource type="Texture2D" uid="uid://0uivkefg4tdo" path="res://assets/j_w_bjerk_painterly_spell_cc_by/beam-blue-2.png" id="5_bhlc0"]
+[ext_resource type="Script" path="res://ui/hud/Restart.gd" id="6_eacrh"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7hf5g"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8my3m"]
 font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_rd46t"]
+font_size = 35
 
 [node name="HUD" type="CanvasLayer"]
 layer = 2
@@ -113,3 +117,19 @@ offset_right = 773.0
 offset_bottom = 566.0
 text = "R"
 label_settings = SubResource("LabelSettings_8my3m")
+
+[node name="Restart" type="Control" parent="."]
+process_mode = 4
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_eacrh")
+
+[node name="Label" type="Label" parent="Restart"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "PRESS R"
+label_settings = SubResource("LabelSettings_rd46t")
