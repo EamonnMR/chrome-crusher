@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ci5ryfv1dtg7p"]
+[gd_scene load_steps=13 format=3 uid="uid://ci5ryfv1dtg7p"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_nlh1m"]
 [ext_resource type="Texture2D" uid="uid://di8ha6ppvagus" path="res://icon.svg" id="2_aay6k"]
@@ -7,7 +7,10 @@
 [ext_resource type="Script" path="res://component/ChordedController.gd" id="5_ewnqr"]
 [ext_resource type="PackedScene" uid="uid://t8jbdsossrdy" path="res://entities/projectiles/proj_red.tscn" id="5_fia3n"]
 [ext_resource type="PackedScene" uid="uid://cq3ts2w8upfx1" path="res://entities/projectiles/proj_green.tscn" id="6_1021j"]
+[ext_resource type="Texture2D" uid="uid://bq1qghqaagnt2" path="res://assets/red_shield.png" id="6_l52ys"]
 [ext_resource type="PackedScene" uid="uid://cjagpogc8v5cn" path="res://entities/projectiles/proj_blue.tscn" id="7_hn20c"]
+[ext_resource type="Texture2D" uid="uid://k58q0fxetlin" path="res://assets/green_shield.png" id="8_w1qf0"]
+[ext_resource type="Texture2D" uid="uid://by7oi0jxspkgh" path="res://assets/blue_shield.png" id="10_p4wm3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1y61n"]
 radius = 56.0089
@@ -25,16 +28,19 @@ mask = 4
 [node name="Spell_R" parent="Sprite" instance=ExtResource("4_g0jnr")]
 color = 1
 projectile_scene = ExtResource("5_fia3n")
+shield_graphic = ExtResource("6_l52ys")
 projectile_mask = 5
 
 [node name="Spell_G" parent="Sprite" instance=ExtResource("4_g0jnr")]
 color = 2
 projectile_scene = ExtResource("6_1021j")
+shield_graphic = ExtResource("8_w1qf0")
 projectile_mask = 5
 
 [node name="Spell_B" parent="Sprite" instance=ExtResource("4_g0jnr")]
 color = 3
 projectile_scene = ExtResource("7_hn20c")
+shield_graphic = ExtResource("10_p4wm3")
 projectile_mask = 5
 
 [node name="ChordedController" type="Node2D" parent="."]

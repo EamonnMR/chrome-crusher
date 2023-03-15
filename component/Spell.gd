@@ -5,6 +5,7 @@ extends Area2D
 @export var projectile_velocity: float = 10
 @export var spread: float
 @export var damage_amount: float
+@export var shield_graphic: Texture2D
 @export_flags_2d_physics var projectile_mask: int
 
 var cooldown = false
@@ -14,6 +15,7 @@ func _ready():
 	add_child(
 		parent.get_node("CollisionShape2D").duplicate()
 	)
+	$ShieldGraphic.texture = shield_graphic
 
 func shoot():
 	if not cooldown:
@@ -24,7 +26,7 @@ func shoot():
 func block():
 	# TODO: Block projectiles
 	$ShieldGraphic.show()
-	$Timer.start()
+	$ShieldTimer.start()
 	parent.disable_hits()
 	collision_layer = 2
 
@@ -50,7 +52,7 @@ func _create_projectile():
 	var projectile = projectile_scene.instantiate()
 	projectile.color = color
 	projectile.global_transform = global_transform
-	projectile.damage = damage
+	#projectile.damage = damage
 	projectile.initial_velocity = projectile_velocity
 	#projectile.velocity = parent.velocity
 	var proj_area: Area2D = projectile.get_node("Area2D")
