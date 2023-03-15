@@ -15,8 +15,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_1y61n"]
 radius = 56.0089
 
-[node name="Player" type="CharacterBody2D"]
-collision_layer = 2
+[node name="Player" type="CharacterBody2D" groups=["players"]]
+collision_layer = 18
 script = ExtResource("1_nlh1m")
 
 [node name="Sprite" type="Sprite2D" parent="."]

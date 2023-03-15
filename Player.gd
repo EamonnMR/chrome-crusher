@@ -13,6 +13,8 @@ const SPEED = 300.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+func _ready():
+	enable_hits()
 
 func _physics_process(delta):
 	var direction = $ChordedController.get_motion()
@@ -44,7 +46,7 @@ func dead():
 
 # TODO: Make this color-specific?
 func enable_hits():
-	collision_layer = 2 #player
+	collision_layer = 2+16 #player + player-detect
 
 func disable_hits():
-	collision_layer = 0
+	collision_layer = 16

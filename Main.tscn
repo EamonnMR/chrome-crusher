@@ -29,6 +29,7 @@ position = Vector2(954, -187)
 rotation = 0.0106161
 
 [node name="Foe" parent="." instance=ExtResource("4_00mtn")]
+position = Vector2(378, 244)
 
 [node name="Wall5" parent="." instance=ExtResource("5_hnlxj")]
 position = Vector2(53, 440)
