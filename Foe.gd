@@ -11,7 +11,7 @@ enum STATE {
 	#PATROL,
 	IDLE,
 	#MOVING_TO_LAST_KNOWN_POSITION,
-	#SPOT_DELAY,
+	SPOT_DELAY,
 	#SHOOTING,
 	RUSHING,
 	ATTACK_DELAY,
@@ -39,7 +39,8 @@ func _physics_process(delta):
 func _check_visible_player() -> void:
 	for possible_target in players_in_detect_radius:
 		if _has_los(possible_target):
-			_change_state_rush(possible_target)
+			target = possible_target
+			_change_state_spot_delay()
 
 func _has_los(los_target) -> bool:
 	var space_state = get_world_2d().direct_space_state
@@ -71,8 +72,7 @@ func _change_state_idle() -> void:
 	target = null
 	state = STATE.IDLE
 
-func _change_state_rush(new_target) -> void:
-	target = new_target
+func _change_state_rush() -> void:
 	state = STATE.RUSHING
 
 func damage(color):
@@ -96,6 +96,10 @@ func _on_melee_weapon_object_in_threat_range(object):
 func _change_state_attack_delay():
 	state = STATE.ATTACK_DELAY
 	$AttackDelayTimer.start()
+	
+func _change_state_spot_delay():
+	state = STATE.SPOT_DELAY
+	$SpotDelayTimer.start()
 
 func _change_state_attacking():
 	state = STATE.ATTACKING
@@ -105,12 +109,16 @@ func _on_melee_weapon_object_exited_threat_range(object):
 	if object == target:
 		match state:
 			STATE.ATTACK_DELAY:
-				_change_state_rush(target)
+				_change_state_rush()
 			STATE.ATTACKING:
-				_change_state_rush(target)
+				_change_state_rush()
 
 
 func _on_attack_reposition_timer_timeout():
 	match state:
 		STATE.ATTACKING:
-			_change_state_rush(target)
+			_change_state_rush()
+
+
+func _on_spot_delay_timer_timeout():
+	_change_state_rush()
