@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 100.0
+const SPEED = 280.0
 const JUMP_VELOCITY = -400.0
 
 var players_in_detect_radius = []
@@ -75,3 +75,7 @@ func _on_detect_area_body_entered(body):
 func _on_detect_area_body_exited(body):
 	if body in get_tree().get_nodes_in_group("players"):
 		players_in_detect_radius.erase(body)
+
+func _on_melee_weapon_object_in_threat_range(object):
+	if object == target:
+		$MeleeWeapon.shoot()

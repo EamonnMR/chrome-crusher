@@ -30,5 +30,6 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectArea"]
 shape = SubResource("CircleShape2D_r4bqt")
 
+[connection signal="object_in_threat_range" from="MeleeWeapon" to="." method="_on_melee_weapon_object_in_threat_range"]
 [connection signal="body_entered" from="DetectArea" to="." method="_on_detect_area_body_entered"]
 [connection signal="body_exited" from="DetectArea" to="." method="_on_detect_area_body_exited"]
