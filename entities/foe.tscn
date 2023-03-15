@@ -30,6 +30,19 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectArea"]
 shape = SubResource("CircleShape2D_r4bqt")
 
+[node name="AttackDelayTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AttackRepositionTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="object_exited_threat_range" from="MeleeWeapon" to="." method="_on_melee_weapon_object_exited_threat_range"]
 [connection signal="object_in_threat_range" from="MeleeWeapon" to="." method="_on_melee_weapon_object_in_threat_range"]
 [connection signal="body_entered" from="DetectArea" to="." method="_on_detect_area_body_entered"]
 [connection signal="body_exited" from="DetectArea" to="." method="_on_detect_area_body_exited"]
+[connection signal="timeout" from="AttackDelayTimer" to="." method="_change_state_attacking"]
+[connection signal="timeout" from="AttackRepositionTimer" to="." method="_on_attack_reposition_timer_timeout"]

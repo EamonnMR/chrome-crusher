@@ -8,6 +8,8 @@ var in_melee_area = []
 
 signal object_in_threat_range(object)
 
+signal object_exited_threat_range(object)
+
 var cooldown:bool = false
 
 func _ready():
@@ -32,6 +34,7 @@ func _on_melee_area_body_entered(body):
 
 func _on_melee_area_body_exited(body):
 	in_melee_area.erase(body)
+	object_exited_threat_range.emit(body)
 
 func _start_cooldown():
 	cooldown = true

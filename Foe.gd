@@ -14,8 +14,8 @@ enum STATE {
 	#SPOT_DELAY,
 	#SHOOTING,
 	RUSHING,
-	#ATTACK_DELAY,
-	#ATTACKING
+	ATTACK_DELAY,
+	ATTACKING
 }
 
 var state: STATE = STATE.IDLE
@@ -25,7 +25,15 @@ func _physics_process(delta):
 		STATE.IDLE:
 			_check_visible_player()
 		STATE.RUSHING:
-			_process_rushing(delta)
+			_chase(delta)
+		STATE.ATTACK_DELAY:
+			_face(delta)
+			velocity = Vector2(0,0)
+		STATE.ATTACKING:
+			_face(delta)
+			velocity = Vector2(0,0)
+			$MeleeWeapon.shoot()
+	$Label.text = str(state)
 	move_and_slide()
 	
 func _check_visible_player() -> void:
@@ -49,9 +57,12 @@ func _has_los(los_target) -> bool:
 	else:
 		return false
 
-func _process_rushing(delta) -> void:
+func _face(delta) -> void:
 	if is_instance_valid(target):
 		rotation = global_position.angle_to_point(target.global_position) + PI/2
+func _chase(delta) -> void:
+	_face(delta)
+	if is_instance_valid(target):
 		velocity = Vector2(SPEED,0).rotated(rotation - PI/2)
 	else:
 		_change_state_idle()
@@ -77,5 +88,29 @@ func _on_detect_area_body_exited(body):
 		players_in_detect_radius.erase(body)
 
 func _on_melee_weapon_object_in_threat_range(object):
+	match state:
+		STATE.RUSHING:
+			if object == target:
+				_change_state_attack_delay()
+
+func _change_state_attack_delay():
+	state = STATE.ATTACK_DELAY
+	$AttackDelayTimer.start()
+
+func _change_state_attacking():
+	state = STATE.ATTACKING
+	$AttackRepositionTimer.start()
+
+func _on_melee_weapon_object_exited_threat_range(object):
 	if object == target:
-		$MeleeWeapon.shoot()
+		match state:
+			STATE.ATTACK_DELAY:
+				_change_state_rush(target)
+			STATE.ATTACKING:
+				_change_state_rush(target)
+
+
+func _on_attack_reposition_timer_timeout():
+	match state:
+		STATE.ATTACKING:
+			_change_state_rush(target)
