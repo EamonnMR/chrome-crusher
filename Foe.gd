@@ -39,7 +39,10 @@ func _physics_process(delta):
 func _check_visible_player() -> void:
 	for possible_target in players_in_detect_radius:
 		if _has_los(possible_target):
-			target = possible_target
+			if "parent" in possible_target:
+				target = possible_target.parent
+			else:
+				target = possible_target
 			_change_state_spot_delay()
 
 func _has_los(los_target) -> bool:
@@ -87,12 +90,6 @@ func _on_detect_area_body_exited(body):
 	if body in get_tree().get_nodes_in_group("players"):
 		players_in_detect_radius.erase(body)
 
-func _on_melee_weapon_object_in_threat_range(object):
-	match state:
-		STATE.RUSHING:
-			if object == target:
-				_change_state_attack_delay()
-
 func _change_state_attack_delay():
 	state = STATE.ATTACK_DELAY
 	$AttackDelayTimer.start()
@@ -105,20 +102,33 @@ func _change_state_attacking():
 	state = STATE.ATTACKING
 	$AttackRepositionTimer.start()
 
-func _on_melee_weapon_object_exited_threat_range(object):
-	if object == target:
-		match state:
-			STATE.ATTACK_DELAY:
-				_change_state_rush()
-			STATE.ATTACKING:
-				_change_state_rush()
-
 
 func _on_attack_reposition_timer_timeout():
 	match state:
 		STATE.ATTACKING:
 			_change_state_rush()
 
+func _on_attack_area_body_entered(body):
+	if body_is_target(body):
+		match state:
+			STATE.RUSHING:
+				_change_state_attack_delay()
+
+func  _on_attack_area_body_exited(body):
+	if body_is_target(body):
+		match state:
+			STATE.ATTACK_DELAY:
+				_change_state_rush()
+			STATE.ATTACKING:
+				_change_state_rush()
+
+func body_is_target(body):
+	if body == target:
+		return true
+	if not is_instance_valid(target):
+		return false
+	if "parent" in body and body.parent == target:
+		return true
 
 func _on_spot_delay_timer_timeout():
 	_change_state_rush()

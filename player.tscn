@@ -25,19 +25,19 @@ texture = ExtResource("2_aay6k")
 [node name="Weapon" parent="Sprite" instance=ExtResource("3_kb8h1")]
 mask = 4
 
-[node name="Spell_R" parent="Sprite" instance=ExtResource("4_g0jnr")]
+[node name="Spell_R" parent="Sprite" groups=["player"] instance=ExtResource("4_g0jnr")]
 color = 1
 projectile_scene = ExtResource("5_fia3n")
 shield_graphic = ExtResource("6_l52ys")
 projectile_mask = 5
 
-[node name="Spell_G" parent="Sprite" instance=ExtResource("4_g0jnr")]
+[node name="Spell_G" parent="Sprite" groups=["player"] instance=ExtResource("4_g0jnr")]
 color = 2
 projectile_scene = ExtResource("6_1021j")
 shield_graphic = ExtResource("8_w1qf0")
 projectile_mask = 5
 
-[node name="Spell_B" parent="Sprite" instance=ExtResource("4_g0jnr")]
+[node name="Spell_B" parent="Sprite" groups=["player"] instance=ExtResource("4_g0jnr")]
 color = 3
 projectile_scene = ExtResource("7_hn20c")
 shield_graphic = ExtResource("10_p4wm3")
