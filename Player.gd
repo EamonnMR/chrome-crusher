@@ -22,16 +22,17 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	velocity = direction * SPEED
 	$Sprite.rotation = $ChordedController.get_aim_dir() + (PI / 2.0)
-	$ChordedController.get
-	selected_color = $ChordedController.selected_color()
+	$ChordedController.set_selected_color(self)
 	_handle_shooting()
 	move_and_slide()
 
 func _handle_shooting():
-	if Input.is_action_pressed("shoot"):
-		spells[selected_color].shoot()
 	if Input.is_action_pressed("block"):
-		spells[selected_color].block()
+		if spells[selected_color].block():
+			selected_color = Util.COLOR.COLORLESS
+	if Input.is_action_pressed("shoot"):
+		if spells[selected_color].shoot():
+			selected_color = Util.COLOR.COLORLESS
 
 func damage(color):
 	dead()

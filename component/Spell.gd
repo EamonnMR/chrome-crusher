@@ -17,18 +17,23 @@ func _ready():
 	)
 	$ShieldGraphic.texture = shield_graphic
 
-func shoot():
+func shoot() -> bool:
 	if not cooldown:
 		_start_cooldown()
 		_create_projectile()
 		#_effects()
+		return true
+	return false
 
-func block():
-	# TODO: Block projectiles
-	$ShieldGraphic.show()
-	$ShieldTimer.start()
-	parent.disable_hits()
-	collision_layer = 2
+func block() -> bool:
+	if not cooldown:
+		_start_cooldown()
+		$ShieldGraphic.show()
+		$ShieldTimer.start()
+		parent.disable_hits()
+		collision_layer = 2
+		return true
+	return false
 
 func damage(dmg_color: Util.COLOR):
 	# TODO: Bounce, etc?

@@ -57,11 +57,12 @@ func get_motion() -> Vector2:
 	
 	return Vector2(1, 0).rotated(ideal_face)
 
-func selected_color() -> Util.COLOR:
-	if Input.is_key_pressed(KEY_Q):
-		return Util.COLOR.RED
-	if Input.is_key_pressed(KEY_E):
-		return Util.COLOR.GREEN
-	if Input.is_key_pressed(KEY_R):
-		return Util.COLOR.BLUE
-	return Util.COLOR.COLORLESS
+func set_selected_color(player) -> void:
+	if Input.is_action_just_pressed("nospell"):
+		player.selected_color = Util.COLOR.COLORLESS
+	if Input.is_action_just_pressed("spell_b"):
+		player.selected_color = Util.COLOR.BLUE
+	if Input.is_action_just_pressed("spell_g"):
+		player.selected_color = Util.COLOR.GREEN
+	if Input.is_action_just_pressed("spell_r"):
+		player.selected_color = Util.COLOR.RED

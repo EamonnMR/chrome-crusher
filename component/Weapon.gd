@@ -22,10 +22,10 @@ func shoot():
 		for body in in_melee_area:
 			if body.has_method("damage"):
 				body.damage(color)
+		return true
 
 func block():
-	pass
-	# Melee weapon can't block
+	return false
 
 func _on_melee_area_body_entered(body):
 	in_melee_area.append(body)
