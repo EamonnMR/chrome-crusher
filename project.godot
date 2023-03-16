@@ -59,3 +59,4 @@ spell_b={
 2d_physics/layer_3="npc"
 2d_physics/layer_4="npc-projectile"
 2d_physics/layer_5="player-detect"
+2d_physics/layer_6="navpoints"

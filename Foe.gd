@@ -7,8 +7,10 @@ var players_in_detect_radius = []
 
 var target: CharacterBody2D = null
 
+var next_patrol_node = null
+
 enum STATE {
-	#PATROL,
+	PATROL,
 	IDLE,
 	#MOVING_TO_LAST_KNOWN_POSITION,
 	SPOT_DELAY,
@@ -18,19 +20,31 @@ enum STATE {
 	ATTACKING
 }
 
-var state: STATE = STATE.IDLE
+@export var state: STATE = STATE.PATROL
+
+@export var patrol_path_paths: Array[NodePath]
+
+@onready var patrol_path = patrol_path_paths.map(self.get_node)
+
+func _ready():
+	match state:
+		STATE.PATROL:
+			change_state_patrol()
 
 func _physics_process(delta):
 	match state:
+		STATE.PATROL:
+			_check_visible_player()
+			_chase(delta, next_patrol_node)
 		STATE.IDLE:
 			_check_visible_player()
 		STATE.RUSHING:
-			_chase(delta)
+			_chase(delta, target)
 		STATE.ATTACK_DELAY:
-			_face(delta)
+			_face(delta, target)
 			velocity = Vector2(0,0)
 		STATE.ATTACKING:
-			_face(delta)
+			_face(delta, target)
 			velocity = Vector2(0,0)
 			$MeleeWeapon.shoot()
 	$Label.text = str(state)
@@ -61,15 +75,16 @@ func _has_los(los_target) -> bool:
 	else:
 		return false
 
-func _face(delta) -> void:
-	if is_instance_valid(target):
-		rotation = global_position.angle_to_point(target.global_position) + PI/2
-func _chase(delta) -> void:
-	_face(delta)
-	if is_instance_valid(target):
+func _face(delta, at) -> void:
+	if is_instance_valid(at):
+		rotation = global_position.angle_to_point(at.global_position) + PI/2
+		
+func _chase(delta, to) -> void:
+	if is_instance_valid(to):
+		_face(delta, to)
 		velocity = Vector2(SPEED,0).rotated(rotation - PI/2)
 	else:
-		_change_state_idle()
+		change_state_patrol()
 
 func _change_state_idle() -> void:
 	target = null
@@ -132,3 +147,15 @@ func body_is_target(body):
 
 func _on_spot_delay_timer_timeout():
 	_change_state_rush()
+
+func on_navpoint_reached(navpoint):
+	var index = patrol_path.find(navpoint)
+	if index >= 0:
+		next_patrol_node = patrol_path[(index + 1) % patrol_path.size()]
+
+func change_state_patrol():
+	if not patrol_path.size() > 0:
+		state = STATE.IDLE
+	else:
+		state = STATE.PATROL
+		next_patrol_node = patrol_path[0]
