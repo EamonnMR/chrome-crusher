@@ -1,29 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckdxk2jkw1wc3"]
+[gd_scene load_steps=5 format=3 uid="uid://blfe7rt53y05b"]
 
-[ext_resource type="Script" path="res://entities/death_wall.gd" id="1_l0q5q"]
+[ext_resource type="Script" path="res://entities/death_wall.gd" id="1_6seyv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1smt"]
 size = Vector2(266, 20)
 
-[sub_resource type="Gradient" id="Gradient_8s3fc"]
-colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 1)
+[sub_resource type="Gradient" id="Gradient_ifls4"]
+colors = PackedColorArray(0, 1, 0, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_y122f"]
-gradient = SubResource("Gradient_8s3fc")
-width = 265
-height = 23
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_elv7g"]
+gradient = SubResource("Gradient_ifls4")
 
 [node name="Wall" type="Area2D"]
 collision_layer = 0
 collision_mask = 2
-script = ExtResource("1_l0q5q")
-color = 1
+script = ExtResource("1_6seyv")
+color = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_c1smt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture2D_y122f")
+texture = SubResource("GradientTexture1D_elv7g")
 
 [connection signal="area_entered" from="." to="." method="_on_object_entered"]
 [connection signal="body_entered" from="." to="." method="_on_object_entered"]

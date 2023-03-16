@@ -37,9 +37,8 @@ func block() -> bool:
 
 func damage(dmg_color: Util.COLOR):
 	# TODO: Bounce, etc?
-	if color == dmg_color:
+	if color != dmg_color:
 		parent.damage(color)
-	
 
 func _on_timer_timeout():
 	$ShieldGraphic.hide()

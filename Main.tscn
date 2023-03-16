@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://p4el6x1jfav3" path="res://ui/hud/hud.tscn" id="3_gk6yj"]
 [ext_resource type="PackedScene" uid="uid://bhu1vnfq82ex4" path="res://entities/foe.tscn" id="4_00mtn"]
 [ext_resource type="PackedScene" uid="uid://btip2mr61iw3i" path="res://entities/placeholder_wall.tscn" id="4_btjl6"]
-[ext_resource type="PackedScene" uid="uid://5phh6uk2u508" path="res://entities/red_death_wall.tscn" id="5_hnlxj"]
+[ext_resource type="PackedScene" uid="uid://ckdxk2jkw1wc3" path="res://entities/red_death_wall.tscn" id="5_hnlxj"]
 
 [node name="World" type="Node2D"]
 
@@ -27,6 +27,74 @@ rotation = 0.0106161
 [node name="Wall4" parent="." instance=ExtResource("4_btjl6")]
 position = Vector2(954, -187)
 rotation = 0.0106161
+
+[node name="Wall6" parent="." instance=ExtResource("4_btjl6")]
+position = Vector2(1204, -182)
+rotation = 0.0106161
+
+[node name="Wall8" parent="." instance=ExtResource("4_btjl6")]
+position = Vector2(1461, -182)
+rotation = 0.0106161
+
+[node name="Wall16" parent="." instance=ExtResource("4_btjl6")]
+position = Vector2(1726, -182)
+rotation = 0.0106161
+
+[node name="Wall17" parent="." instance=ExtResource("4_btjl6")]
+position = Vector2(1978, -182)
+rotation = 0.0106161
+
+[node name="Wall18" parent="." instance=ExtResource("4_btjl6")]
+position = Vector2(2114, -69)
+rotation = 1.57105
+
+[node name="Wall19" parent="." instance=ExtResource("4_btjl6")]
+position = Vector2(2117, 193)
+rotation = 1.57105
+
+[node name="Wall20" parent="." instance=ExtResource("4_btjl6")]
+position = Vector2(2117, 427)
+rotation = 1.57105
+
+[node name="Wall21" parent="." instance=ExtResource("4_btjl6")]
+position = Vector2(2006, 568)
+rotation = 3.16244
+
+[node name="Wall22" parent="." instance=ExtResource("4_btjl6")]
+position = Vector2(1456, 568)
+rotation = 3.16244
+
+[node name="Wall7" parent="." instance=ExtResource("4_btjl6")]
+position = Vector2(1328, -58)
+rotation = 1.57625
+
+[node name="Wall9" parent="." instance=ExtResource("4_btjl6")]
+position = Vector2(1326, 437)
+rotation = 1.57625
+
+[node name="Wall10" parent="." instance=ExtResource("4_btjl6")]
+position = Vector2(1202, 570)
+rotation = 3.14462
+
+[node name="Wall11" parent="." instance=ExtResource("4_btjl6")]
+position = Vector2(943, 572)
+rotation = 3.14462
+
+[node name="Wall12" parent="." instance=ExtResource("4_btjl6")]
+position = Vector2(703, 575)
+rotation = 3.14462
+
+[node name="Wall13" parent="." instance=ExtResource("4_btjl6")]
+position = Vector2(487, 575)
+rotation = 3.14462
+
+[node name="Wall14" parent="." instance=ExtResource("4_btjl6")]
+position = Vector2(321, 575)
+rotation = 3.14462
+
+[node name="Wall15" parent="." instance=ExtResource("4_btjl6")]
+position = Vector2(174, 575)
+rotation = 3.14462
 
 [node name="Foe" parent="." instance=ExtResource("4_00mtn")]
 position = Vector2(378, 248)
