@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bk56hrvtqvxp3" path="res://assets/scratchIO_cc0/sword.png" id="2_etqns"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4w284"]
-radius = 35.0
-height = 120.0
+radius = 69.1345
+height = 205.81
 
 [sub_resource type="Animation" id="Animation_qnlsh"]
 resource_name = "swing"
@@ -67,6 +67,7 @@ rotation = -1.55666
 shape = SubResource("CapsuleShape2D_4w284")
 
 [node name="Cooldown" type="Timer" parent="."]
+one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(66, -60)

@@ -27,10 +27,10 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _handle_shooting():
-	if Input.is_action_pressed("block"):
+	if Input.is_action_just_pressed("block"):
 		if spells[selected_color].block():
 			selected_color = Util.COLOR.COLORLESS
-	if Input.is_action_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot"):
 		if spells[selected_color].shoot():
 			selected_color = Util.COLOR.COLORLESS
 

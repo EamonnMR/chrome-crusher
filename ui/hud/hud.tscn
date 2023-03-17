@@ -1,13 +1,22 @@
-[gd_scene load_steps=10 format=3 uid="uid://p4el6x1jfav3"]
+[gd_scene load_steps=13 format=3 uid="uid://p4el6x1jfav3"]
 
 [ext_resource type="Script" path="res://SpellPanel.gd" id="1_moppp"]
 [ext_resource type="Texture2D" uid="uid://u5fhp6x4i8dl" path="res://assets/j_w_bjerk_painterly_spell_cc_by/lighting-fire-1.png" id="2_wwqi3"]
 [ext_resource type="Texture2D" uid="uid://bkfmdw7xo5a01" path="res://assets/j_w_bjerk_painterly_spell_cc_by/slice-spirit-1.png" id="3_gdyqr"]
+[ext_resource type="Texture2D" uid="uid://cwh1v60ijloyk" path="res://ui/hud/progress.tres" id="3_wlyg3"]
 [ext_resource type="Texture2D" uid="uid://btcf0258dpbpq" path="res://assets/j_w_bjerk_painterly_spell_cc_by/needles-acid-2.png" id="4_l7knb"]
 [ext_resource type="Texture2D" uid="uid://0uivkefg4tdo" path="res://assets/j_w_bjerk_painterly_spell_cc_by/beam-blue-2.png" id="5_bhlc0"]
 [ext_resource type="Script" path="res://ui/hud/Restart.gd" id="6_eacrh"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7hf5g"]
+
+[sub_resource type="Gradient" id="Gradient_ux7vi"]
+colors = PackedColorArray(0, 0, 0, 1, 0.259294, 0.259294, 0.259294, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8r7a7"]
+gradient = SubResource("Gradient_ux7vi")
+width = 128
+height = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_8my3m"]
 font_size = 25
@@ -18,103 +27,129 @@ font_size = 35
 [node name="HUD" type="CanvasLayer"]
 layer = 2
 
-[node name="SpellPanel" type="Control" parent="."]
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("1_moppp")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
 
-[node name="SpellR" type="TextureRect" parent="SpellPanel"]
-material = SubResource("CanvasItemMaterial_7hf5g")
+[node name="SpellPanel" type="HBoxContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 437.0
-offset_top = 487.0
-offset_right = 693.0
-offset_bottom = 743.0
+offset_left = -262.0
+offset_top = -128.0
+offset_right = 262.0
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(0.483614, 0.483614)
+script = ExtResource("1_moppp")
+
+[node name="Weapon" type="TextureRect" parent="Control/SpellPanel"]
+material = SubResource("CanvasItemMaterial_7hf5g")
+layout_mode = 2
+texture = ExtResource("3_gdyqr")
+
+[node name="ProgressBar" type="TextureProgressBar" parent="Control/SpellPanel/Weapon"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_right = 64.0
+offset_bottom = 128.0
+grow_horizontal = 2
+texture_under = SubResource("GradientTexture2D_8r7a7")
+texture_progress = ExtResource("3_wlyg3")
+
+[node name="SpellR" type="TextureRect" parent="Control/SpellPanel"]
+material = SubResource("CanvasItemMaterial_7hf5g")
+layout_mode = 2
 texture = ExtResource("2_wwqi3")
 
-[node name="Label" type="Label" parent="SpellPanel"]
-layout_mode = 0
-offset_left = 457.0
-offset_top = 527.0
-offset_right = 497.0
-offset_bottom = 565.0
+[node name="ProgressBar" type="TextureProgressBar" parent="Control/SpellPanel/SpellR"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.0
+offset_right = 65.0
+offset_bottom = 64.0
+grow_horizontal = 2
+texture_under = SubResource("GradientTexture2D_8r7a7")
+texture_progress = ExtResource("3_wlyg3")
+
+[node name="Label" type="Label" parent="Control/SpellPanel/SpellR"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -38.0
+offset_right = 40.0
+grow_vertical = 0
 text = "Q"
 label_settings = SubResource("LabelSettings_8my3m")
 
-[node name="Weapon" type="TextureRect" parent="SpellPanel"]
-material = SubResource("CanvasItemMaterial_7hf5g")
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 303.0
-offset_top = 490.0
-offset_right = 559.0
-offset_bottom = 746.0
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(0.483614, 0.483614)
-texture = ExtResource("3_gdyqr")
-
-[node name="SpellG" type="TextureRect" parent="SpellPanel"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 568.0
-offset_top = 487.0
-offset_right = 824.0
-offset_bottom = 743.0
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(0.474796, 0.474796)
+[node name="SpellG" type="TextureRect" parent="Control/SpellPanel"]
+layout_mode = 2
 texture = ExtResource("4_l7knb")
 
-[node name="Label2" type="Label" parent="SpellPanel"]
-layout_mode = 0
-offset_left = 596.0
-offset_top = 527.0
-offset_right = 636.0
-offset_bottom = 565.0
+[node name="ProgressBar" type="TextureProgressBar" parent="Control/SpellPanel/SpellG"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+texture_under = SubResource("GradientTexture2D_8r7a7")
+texture_progress = ExtResource("3_wlyg3")
+
+[node name="Label2" type="Label" parent="Control/SpellPanel/SpellG"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -38.0
+offset_right = 40.0
+grow_vertical = 0
 text = "E"
 label_settings = SubResource("LabelSettings_8my3m")
 
-[node name="SpellB" type="TextureRect" parent="SpellPanel"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 701.0
-offset_top = 484.0
-offset_right = 957.0
-offset_bottom = 740.0
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(0.493684, 0.493684)
+[node name="SpellB" type="TextureRect" parent="Control/SpellPanel"]
+layout_mode = 2
 texture = ExtResource("5_bhlc0")
 
-[node name="Label3" type="Label" parent="SpellPanel"]
-layout_mode = 0
-offset_left = 733.0
-offset_top = 528.0
-offset_right = 773.0
-offset_bottom = 566.0
+[node name="ProgressBar" type="TextureProgressBar" parent="Control/SpellPanel/SpellB"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+texture_under = SubResource("GradientTexture2D_8r7a7")
+texture_progress = ExtResource("3_wlyg3")
+
+[node name="Label3" type="Label" parent="Control/SpellPanel/SpellB"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -38.0
+offset_right = 40.0
+grow_vertical = 0
 text = "R"
 label_settings = SubResource("LabelSettings_8my3m")
 
