@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4tvi2paprxm4"]
+[gd_scene load_steps=9 format=3 uid="uid://c4tvi2paprxm4"]
 
 [ext_resource type="PackedScene" uid="uid://ci5ryfv1dtg7p" path="res://player.tscn" id="3_6mvui"]
 [ext_resource type="PackedScene" uid="uid://p4el6x1jfav3" path="res://ui/hud/hud.tscn" id="3_gk6yj"]
-[ext_resource type="PackedScene" uid="uid://bhu1vnfq82ex4" path="res://entities/foe.tscn" id="4_00mtn"]
 [ext_resource type="PackedScene" uid="uid://btip2mr61iw3i" path="res://entities/placeholder_wall.tscn" id="4_btjl6"]
 [ext_resource type="PackedScene" uid="uid://ckdxk2jkw1wc3" path="res://entities/red_death_wall.tscn" id="5_hnlxj"]
 [ext_resource type="PackedScene" uid="uid://coehfk4h2fp1c" path="res://entities/Navpoint.tscn" id="6_2kv7v"]
+[ext_resource type="PackedScene" uid="uid://jnyq2441m2g5" path="res://entities/MeleeFoe.tscn" id="6_ldita"]
+[ext_resource type="PackedScene" uid="uid://cj83gvwp4u6b8" path="res://entities/RangedFoe.tscn" id="7_xqtvo"]
+[ext_resource type="PackedScene" uid="uid://buct3tt8nca4t" path="res://entities/blue_death_wall.tscn" id="8_lmn4s"]
 
 [node name="World" type="Node2D"]
 
@@ -13,93 +15,94 @@
 
 [node name="Player" parent="." instance=ExtResource("3_6mvui")]
 
-[node name="Wall" parent="." instance=ExtResource("4_btjl6")]
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Wall" parent="Walls" instance=ExtResource("4_btjl6")]
 position = Vector2(138, 220)
 rotation = -0.917246
 
-[node name="Wall2" parent="." instance=ExtResource("4_btjl6")]
+[node name="Wall2" parent="Walls" instance=ExtResource("4_btjl6")]
 position = Vector2(296, 14)
 rotation = -0.917246
 
-[node name="Wall3" parent="." instance=ExtResource("4_btjl6")]
+[node name="Wall3" parent="Walls" instance=ExtResource("4_btjl6")]
 position = Vector2(696, -190)
 rotation = 0.0106161
 
-[node name="Wall4" parent="." instance=ExtResource("4_btjl6")]
+[node name="Wall4" parent="Walls" instance=ExtResource("4_btjl6")]
 position = Vector2(954, -187)
 rotation = 0.0106161
 
-[node name="Wall6" parent="." instance=ExtResource("4_btjl6")]
+[node name="Wall6" parent="Walls" instance=ExtResource("4_btjl6")]
 position = Vector2(1204, -182)
 rotation = 0.0106161
 
-[node name="Wall8" parent="." instance=ExtResource("4_btjl6")]
+[node name="Wall8" parent="Walls" instance=ExtResource("4_btjl6")]
 position = Vector2(1461, -182)
 rotation = 0.0106161
 
-[node name="Wall16" parent="." instance=ExtResource("4_btjl6")]
+[node name="Wall16" parent="Walls" instance=ExtResource("4_btjl6")]
 position = Vector2(1726, -182)
 rotation = 0.0106161
 
-[node name="Wall17" parent="." instance=ExtResource("4_btjl6")]
+[node name="Wall17" parent="Walls" instance=ExtResource("4_btjl6")]
 position = Vector2(1978, -182)
 rotation = 0.0106161
 
-[node name="Wall18" parent="." instance=ExtResource("4_btjl6")]
+[node name="Wall18" parent="Walls" instance=ExtResource("4_btjl6")]
 position = Vector2(2114, -69)
 rotation = 1.57105
+scale = Vector2(1, 1)
 
-[node name="Wall19" parent="." instance=ExtResource("4_btjl6")]
+[node name="Wall19" parent="Walls" instance=ExtResource("4_btjl6")]
 position = Vector2(2117, 193)
 rotation = 1.57105
+scale = Vector2(1, 1)
 
-[node name="Wall20" parent="." instance=ExtResource("4_btjl6")]
+[node name="Wall20" parent="Walls" instance=ExtResource("4_btjl6")]
 position = Vector2(2117, 427)
 rotation = 1.57105
+scale = Vector2(1, 1)
 
-[node name="Wall21" parent="." instance=ExtResource("4_btjl6")]
+[node name="Wall21" parent="Walls" instance=ExtResource("4_btjl6")]
 position = Vector2(2006, 568)
-rotation = 3.16244
+rotation = -3.12075
 
-[node name="Wall22" parent="." instance=ExtResource("4_btjl6")]
+[node name="Wall22" parent="Walls" instance=ExtResource("4_btjl6")]
 position = Vector2(1456, 568)
-rotation = 3.16244
+rotation = -3.12075
 
-[node name="Wall7" parent="." instance=ExtResource("4_btjl6")]
+[node name="Wall7" parent="Walls" instance=ExtResource("4_btjl6")]
 position = Vector2(1328, -58)
 rotation = 1.57625
 
-[node name="Wall9" parent="." instance=ExtResource("4_btjl6")]
+[node name="Wall9" parent="Walls" instance=ExtResource("4_btjl6")]
 position = Vector2(1326, 437)
 rotation = 1.57625
 
-[node name="Wall10" parent="." instance=ExtResource("4_btjl6")]
+[node name="Wall10" parent="Walls" instance=ExtResource("4_btjl6")]
 position = Vector2(1202, 570)
-rotation = 3.14462
+rotation = -3.13857
 
-[node name="Wall11" parent="." instance=ExtResource("4_btjl6")]
+[node name="Wall11" parent="Walls" instance=ExtResource("4_btjl6")]
 position = Vector2(943, 572)
-rotation = 3.14462
+rotation = -3.13857
 
-[node name="Wall12" parent="." instance=ExtResource("4_btjl6")]
+[node name="Wall12" parent="Walls" instance=ExtResource("4_btjl6")]
 position = Vector2(703, 575)
-rotation = 3.14462
+rotation = -3.13857
 
-[node name="Wall13" parent="." instance=ExtResource("4_btjl6")]
+[node name="Wall13" parent="Walls" instance=ExtResource("4_btjl6")]
 position = Vector2(487, 575)
-rotation = 3.14462
+rotation = -3.13857
 
-[node name="Wall14" parent="." instance=ExtResource("4_btjl6")]
+[node name="Wall14" parent="Walls" instance=ExtResource("4_btjl6")]
 position = Vector2(321, 575)
-rotation = 3.14462
+rotation = -3.13857
 
-[node name="Wall15" parent="." instance=ExtResource("4_btjl6")]
+[node name="Wall15" parent="Walls" instance=ExtResource("4_btjl6")]
 position = Vector2(174, 575)
-rotation = 3.14462
-
-[node name="Foe" parent="." instance=ExtResource("4_00mtn")]
-position = Vector2(378, 248)
-patrol_path_paths = Array[NodePath]([NodePath("../n1"), NodePath("../n2"), NodePath("../n3"), NodePath("../n4"), NodePath("../n5")])
+rotation = -3.13857
 
 [node name="Wall5" parent="." instance=ExtResource("5_hnlxj")]
 position = Vector2(53, 440)
@@ -119,3 +122,15 @@ position = Vector2(1205, 475)
 
 [node name="n5" parent="." instance=ExtResource("6_2kv7v")]
 position = Vector2(201, 480)
+
+[node name="Foe" parent="." instance=ExtResource("6_ldita")]
+position = Vector2(529, -98)
+rotation = 1.50907
+patrol_path_paths = Array[NodePath]([NodePath("../n1"), NodePath("../n2"), NodePath("../n3"), NodePath("../n4"), NodePath("../n5")])
+
+[node name="Foe2" parent="." instance=ExtResource("7_xqtvo")]
+position = Vector2(1600, 4)
+rotation = -2.45629
+
+[node name="Wall" parent="." instance=ExtResource("8_lmn4s")]
+position = Vector2(1730, 561)

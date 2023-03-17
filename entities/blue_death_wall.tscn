@@ -5,11 +5,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1smt"]
 size = Vector2(266, 20)
 
-[sub_resource type="Gradient" id="Gradient_8uqwi"]
+[sub_resource type="Gradient" id="Gradient_2jkye"]
 colors = PackedColorArray(0, 0, 1, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ujoy6"]
-gradient = SubResource("Gradient_8uqwi")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cyghm"]
+gradient = SubResource("Gradient_2jkye")
+width = 264
+height = 20
 
 [node name="Wall" type="Area2D"]
 collision_layer = 0
@@ -21,7 +23,7 @@ color = 3
 shape = SubResource("RectangleShape2D_c1smt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture1D_ujoy6")
+texture = SubResource("GradientTexture2D_cyghm")
 
 [connection signal="area_entered" from="." to="." method="_on_object_entered"]
 [connection signal="body_entered" from="." to="." method="_on_object_entered"]

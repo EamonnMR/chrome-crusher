@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bhu1vnfq82ex4"]
+[gd_scene load_steps=6 format=3 uid="uid://bhu1vnfq82ex4"]
 
 [ext_resource type="Script" path="res://Foe.gd" id="1_ybyg4"]
-[ext_resource type="PackedScene" uid="uid://bxswa1i4ft2xs" path="res://component/melee_weapon.tscn" id="2_0cui2"]
 [ext_resource type="Texture2D" uid="uid://di8ha6ppvagus" path="res://icon.svg" id="2_3r14v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oionb"]
@@ -16,9 +15,6 @@ radius = 27.4591
 [node name="Foe" type="CharacterBody2D"]
 collision_layer = 36
 script = ExtResource("1_ybyg4")
-
-[node name="MeleeWeapon" parent="." instance=ExtResource("2_0cui2")]
-mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_oionb")
@@ -54,6 +50,8 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(0, -68)
 shape = SubResource("CircleShape2D_0vx3c")
+
+[node name="LastSeenGhost" type="Node2D" parent="."]
 
 [connection signal="body_entered" from="DetectArea" to="." method="_on_detect_area_body_entered"]
 [connection signal="body_exited" from="DetectArea" to="." method="_on_detect_area_body_exited"]

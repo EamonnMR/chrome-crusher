@@ -12,9 +12,10 @@ var cooldown = false
 @onready var parent = get_node("../../")
 
 func _ready():
-	add_child(
-		parent.get_node("CollisionShape2D").duplicate()
-	)
+	if parent.has_node("CollisionShape2D"):
+		add_child(
+			parent.get_node("CollisionShape2D").duplicate()
+		)
 	$ShieldGraphic.texture = shield_graphic
 
 func shoot() -> bool:

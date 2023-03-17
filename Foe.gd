@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-const SPEED = 280.0
+const RUSH_SPEED = 280.0
+const CASUAL_SPEED = 150.0
 const JUMP_VELOCITY = -400.0
 
 var players_in_detect_radius = []
@@ -9,15 +10,17 @@ var target: CharacterBody2D = null
 
 var next_patrol_node = null
 
+@export var melee: bool = true
+
 enum STATE {
 	PATROL,
 	IDLE,
-	#MOVING_TO_LAST_KNOWN_POSITION,
 	SPOT_DELAY,
-	#SHOOTING,
+	SHOOTING,
 	RUSHING,
 	ATTACK_DELAY,
-	ATTACKING
+	ATTACKING,
+	SEARCHING
 }
 
 @export var state: STATE = STATE.PATROL
@@ -35,18 +38,27 @@ func _physics_process(delta):
 	match state:
 		STATE.PATROL:
 			_check_visible_player()
-			_chase(delta, next_patrol_node)
+			_chase(delta, next_patrol_node, CASUAL_SPEED)
 		STATE.IDLE:
 			_check_visible_player()
 		STATE.RUSHING:
-			_chase(delta, target)
+			_maintain_contact()
+			_chase(delta, target, RUSH_SPEED)
+			if not melee:
+				$Weapon.shoot()
+		STATE.SHOOTING:
+			_maintain_contact()
+			_face(delta, target)
+			$Weapon.shoot()
 		STATE.ATTACK_DELAY:
 			_face(delta, target)
 			velocity = Vector2(0,0)
 		STATE.ATTACKING:
 			_face(delta, target)
 			velocity = Vector2(0,0)
-			$MeleeWeapon.shoot()
+			$Weapon.shoot()
+		STATE.SEARCHING:
+			_chase(delta, $LastSeenGhost, RUSH_SPEED)
 	$Label.text = str(state)
 	move_and_slide()
 	
@@ -79,10 +91,10 @@ func _face(delta, at) -> void:
 	if is_instance_valid(at):
 		rotation = global_position.angle_to_point(at.global_position) + PI/2
 		
-func _chase(delta, to) -> void:
+func _chase(delta, to, speed) -> void:
 	if is_instance_valid(to):
 		_face(delta, to)
-		velocity = Vector2(SPEED,0).rotated(rotation - PI/2)
+		velocity = Vector2(speed, 0).rotated(rotation - PI/2)
 	else:
 		change_state_patrol()
 
@@ -146,7 +158,10 @@ func body_is_target(body):
 		return true
 
 func _on_spot_delay_timer_timeout():
-	_change_state_rush()
+	if melee:
+		_change_state_rush()
+	else:
+		_change_state_shoot()
 
 func on_navpoint_reached(navpoint):
 	var index = patrol_path.find(navpoint)
@@ -159,3 +174,10 @@ func change_state_patrol():
 	else:
 		state = STATE.PATROL
 		next_patrol_node = patrol_path[0]
+
+func _change_state_shoot():
+	state = STATE.SHOOTING
+
+func _maintain_contact():
+	pass
+
