@@ -6,6 +6,7 @@ extends Area2D
 @export var spread: float
 @export var damage_amount: float
 @export var shield_graphic: Texture2D
+@export var graphic: Texture2D
 @export_flags_2d_physics var projectile_mask: int
 
 var cooldown = false
@@ -17,6 +18,7 @@ func _ready():
 			parent.get_node("CollisionShape2D").duplicate()
 		)
 	$ShieldGraphic.texture = shield_graphic
+	$Sprite2D.texture = graphic
 
 func shoot() -> bool:
 	if not cooldown:

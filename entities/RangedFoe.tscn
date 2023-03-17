@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cj83gvwp4u6b8"]
+[gd_scene load_steps=5 format=3 uid="uid://cj83gvwp4u6b8"]
 
 [ext_resource type="PackedScene" uid="uid://bhu1vnfq82ex4" path="res://entities/foe.tscn" id="1_72cfp"]
 [ext_resource type="PackedScene" uid="uid://buv4q4a6n6a41" path="res://component/Spell.tscn" id="2_8agws"]
 [ext_resource type="PackedScene" uid="uid://cq3ts2w8upfx1" path="res://entities/projectiles/proj_green.tscn" id="3_4skqd"]
+[ext_resource type="Texture2D" uid="uid://d4gysyr6v7eie" path="res://assets/dungeon_crawl_stone_soup_cc0/rod_2_new.png" id="4_c8puh"]
 
 [node name="Foe" instance=ExtResource("1_72cfp")]
 melee = false
 
-[node name="Weapon" parent="." index="0" instance=ExtResource("2_8agws")]
+[node name="Weapon" parent="." index="2" instance=ExtResource("2_8agws")]
 color = 2
 projectile_scene = ExtResource("3_4skqd")
+graphic = ExtResource("4_c8puh")
 projectile_mask = 2

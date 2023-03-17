@@ -59,10 +59,10 @@ func get_motion() -> Vector2:
 
 func set_selected_color(player) -> void:
 	if Input.is_action_just_pressed("nospell"):
-		player.selected_color = Util.COLOR.COLORLESS
+		player.switch_spell(Util.COLOR.COLORLESS)
 	if Input.is_action_just_pressed("spell_b"):
-		player.selected_color = Util.COLOR.BLUE
+		player.switch_spell(Util.COLOR.BLUE)
 	if Input.is_action_just_pressed("spell_g"):
-		player.selected_color = Util.COLOR.GREEN
+		player.switch_spell(Util.COLOR.GREEN)
 	if Input.is_action_just_pressed("spell_r"):
-		player.selected_color = Util.COLOR.RED
+		player.switch_spell(Util.COLOR.RED)

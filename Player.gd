@@ -15,6 +15,9 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
 	enable_hits()
+	for spell in spells.values():
+		spell.get_node("Sprite2D").hide()
+	switch_spell(selected_color)
 
 func _physics_process(delta):
 	var direction = $ChordedController.get_motion()
@@ -29,10 +32,10 @@ func _physics_process(delta):
 func _handle_shooting():
 	if Input.is_action_just_pressed("block"):
 		if spells[selected_color].block():
-			selected_color = Util.COLOR.COLORLESS
+			switch_spell(Util.COLOR.COLORLESS)
 	if Input.is_action_just_pressed("shoot"):
 		if spells[selected_color].shoot():
-			selected_color = Util.COLOR.COLORLESS
+			switch_spell(Util.COLOR.COLORLESS)
 
 func damage(color):
 	dead()
@@ -51,3 +54,8 @@ func enable_hits():
 
 func disable_hits():
 	collision_layer = 16
+
+func switch_spell(new_color: Util.COLOR):
+	spells[selected_color].get_node("Sprite2D").hide()
+	selected_color = new_color
+	spells[selected_color].get_node("Sprite2D").show()

@@ -13,5 +13,7 @@ visible = false
 [node name="Cooldown" type="Timer" parent="."]
 one_shot = true
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
 [connection signal="timeout" from="ShieldTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
