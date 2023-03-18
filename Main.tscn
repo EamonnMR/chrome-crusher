@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c4tvi2paprxm4"]
+[gd_scene load_steps=10 format=3 uid="uid://c7qits0wpxbkm"]
 
 [ext_resource type="PackedScene" uid="uid://ci5ryfv1dtg7p" path="res://player.tscn" id="3_6mvui"]
 [ext_resource type="PackedScene" uid="uid://p4el6x1jfav3" path="res://ui/hud/hud.tscn" id="3_gk6yj"]
@@ -6,8 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://ckdxk2jkw1wc3" path="res://entities/red_death_wall.tscn" id="5_hnlxj"]
 [ext_resource type="PackedScene" uid="uid://coehfk4h2fp1c" path="res://entities/Navpoint.tscn" id="6_2kv7v"]
 [ext_resource type="PackedScene" uid="uid://jnyq2441m2g5" path="res://entities/MeleeFoe.tscn" id="6_ldita"]
-[ext_resource type="PackedScene" uid="uid://cj83gvwp4u6b8" path="res://entities/RangedFoe.tscn" id="7_xqtvo"]
+[ext_resource type="PackedScene" uid="uid://cj83gvwp4u6b8" path="res://entities/RedRangedFoe.tscn" id="7_xqtvo"]
 [ext_resource type="PackedScene" uid="uid://buct3tt8nca4t" path="res://entities/blue_death_wall.tscn" id="8_lmn4s"]
+[ext_resource type="PackedScene" uid="uid://btraem74vswq" path="res://entities/exit_door.tscn" id="9_1gtwi"]
 
 [node name="World" type="Node2D"]
 
@@ -61,6 +62,54 @@ rotation = 1.57105
 position = Vector2(2117, 427)
 rotation = 1.57105
 
+[node name="Wall23" parent="Walls" instance=ExtResource("4_btjl6")]
+position = Vector2(2120, 706)
+rotation = 1.57105
+
+[node name="Wall24" parent="Walls" instance=ExtResource("4_btjl6")]
+position = Vector2(2120, 962)
+rotation = 1.57105
+
+[node name="Wall25" parent="Walls" instance=ExtResource("4_btjl6")]
+position = Vector2(1997, 1092)
+rotation = 3.15722
+
+[node name="Wall26" parent="Walls" instance=ExtResource("4_btjl6")]
+position = Vector2(1736, 1088)
+rotation = 3.15722
+
+[node name="Wall27" parent="Walls" instance=ExtResource("4_btjl6")]
+position = Vector2(1474, 1084)
+rotation = 3.15722
+
+[node name="Wall28" parent="Walls" instance=ExtResource("4_btjl6")]
+position = Vector2(1212, 1080)
+rotation = 3.15722
+
+[node name="Wall29" parent="Walls" instance=ExtResource("4_btjl6")]
+position = Vector2(950, 1076)
+rotation = 3.15722
+
+[node name="Wall30" parent="Walls" instance=ExtResource("4_btjl6")]
+position = Vector2(686, 1073)
+rotation = 3.15722
+
+[node name="Wall31" parent="Walls" instance=ExtResource("4_btjl6")]
+position = Vector2(421, 1073)
+rotation = 3.15722
+
+[node name="Wall32" parent="Walls" instance=ExtResource("4_btjl6")]
+position = Vector2(160, 1070)
+rotation = 3.14917
+
+[node name="Wall33" parent="Walls" instance=ExtResource("4_btjl6")]
+position = Vector2(44, 933)
+rotation = 4.70687
+
+[node name="Wall34" parent="Walls" instance=ExtResource("4_btjl6")]
+position = Vector2(47, 702)
+rotation = 4.70687
+
 [node name="Wall21" parent="Walls" instance=ExtResource("4_btjl6")]
 position = Vector2(2006, 568)
 rotation = -3.12075
@@ -101,33 +150,56 @@ rotation = -3.13857
 position = Vector2(174, 575)
 rotation = -3.13857
 
-[node name="Wall5" parent="." instance=ExtResource("5_hnlxj")]
+[node name="Wall5" parent="Walls" instance=ExtResource("5_hnlxj")]
 position = Vector2(53, 440)
 rotation = -1.55536
 
-[node name="n1" parent="." instance=ExtResource("6_2kv7v")]
+[node name="Wall35" parent="Walls" instance=ExtResource("8_lmn4s")]
+position = Vector2(1730, 561)
+
+[node name="FirstRoomNavpoints" type="Node2D" parent="."]
+
+[node name="n1" parent="FirstRoomNavpoints" instance=ExtResource("6_2kv7v")]
 position = Vector2(219, 353)
 
-[node name="n2" parent="." instance=ExtResource("6_2kv7v")]
+[node name="n2" parent="FirstRoomNavpoints" instance=ExtResource("6_2kv7v")]
 position = Vector2(612, -91)
 
-[node name="n3" parent="." instance=ExtResource("6_2kv7v")]
+[node name="n3" parent="FirstRoomNavpoints" instance=ExtResource("6_2kv7v")]
 position = Vector2(1269, -86)
 
-[node name="n4" parent="." instance=ExtResource("6_2kv7v")]
+[node name="n4" parent="FirstRoomNavpoints" instance=ExtResource("6_2kv7v")]
 position = Vector2(1205, 475)
 
-[node name="n5" parent="." instance=ExtResource("6_2kv7v")]
+[node name="n5" parent="FirstRoomNavpoints" instance=ExtResource("6_2kv7v")]
 position = Vector2(201, 480)
+
+[node name="ThirdRoomNavPoints" type="Node2D" parent="."]
+
+[node name="n1" parent="ThirdRoomNavPoints" instance=ExtResource("6_2kv7v")]
+position = Vector2(111, 639)
+
+[node name="n2" parent="ThirdRoomNavPoints" instance=ExtResource("6_2kv7v")]
+position = Vector2(111, 994)
+
+[node name="n3" parent="ThirdRoomNavPoints" instance=ExtResource("6_2kv7v")]
+position = Vector2(2059, 1027)
+
+[node name="n4" parent="ThirdRoomNavPoints" instance=ExtResource("6_2kv7v")]
+position = Vector2(2064, 618)
 
 [node name="Foe" parent="." instance=ExtResource("6_ldita")]
 position = Vector2(529, -98)
 rotation = 1.50907
-patrol_path_paths = Array[NodePath]([NodePath("../n1"), NodePath("../n2"), NodePath("../n3"), NodePath("../n4"), NodePath("../n5")])
+patrol_path_paths = Array[NodePath]([NodePath("../FirstRoomNavpoints/n1"), NodePath("../FirstRoomNavpoints/n2"), NodePath("../FirstRoomNavpoints/n3"), NodePath("../FirstRoomNavpoints/n4"), NodePath("../FirstRoomNavpoints/n5")])
 
 [node name="Foe2" parent="." instance=ExtResource("7_xqtvo")]
 position = Vector2(1600, 4)
 rotation = -2.45629
 
-[node name="Wall" parent="." instance=ExtResource("8_lmn4s")]
-position = Vector2(1730, 561)
+[node name="Foe3" parent="." instance=ExtResource("7_xqtvo")]
+position = Vector2(1988, 906)
+rotation = -3.09493
+patrol_path_paths = Array[NodePath]([NodePath("../ThirdRoomNavPoints/n1"), NodePath("../ThirdRoomNavPoints/n2"), NodePath("../ThirdRoomNavPoints/n3"), NodePath("../ThirdRoomNavPoints/n4")])
+
+[node name="ExitDoor" parent="." instance=ExtResource("9_1gtwi")]
