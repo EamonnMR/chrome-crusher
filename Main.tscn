@@ -52,17 +52,14 @@ rotation = 0.0106161
 [node name="Wall18" parent="Walls" instance=ExtResource("4_btjl6")]
 position = Vector2(2114, -69)
 rotation = 1.57105
-scale = Vector2(1, 1)
 
 [node name="Wall19" parent="Walls" instance=ExtResource("4_btjl6")]
 position = Vector2(2117, 193)
 rotation = 1.57105
-scale = Vector2(1, 1)
 
 [node name="Wall20" parent="Walls" instance=ExtResource("4_btjl6")]
 position = Vector2(2117, 427)
 rotation = 1.57105
-scale = Vector2(1, 1)
 
 [node name="Wall21" parent="Walls" instance=ExtResource("4_btjl6")]
 position = Vector2(2006, 568)

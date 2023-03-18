@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 var selected_color: Util.COLOR = Util.COLOR.COLORLESS
 
+var active_shield = null
+
 @onready var spells = {
 	Util.COLOR.COLORLESS: $Sprite/Weapon,
 	Util.COLOR.RED: $Sprite/Spell_R,
@@ -31,14 +33,18 @@ func _physics_process(delta):
 
 func _handle_shooting():
 	if Input.is_action_just_pressed("block"):
-		if spells[selected_color].block():
+		if active_shield == null and spells[selected_color].block():
 			switch_spell(Util.COLOR.COLORLESS)
 	if Input.is_action_just_pressed("shoot"):
 		if spells[selected_color].shoot():
 			switch_spell(Util.COLOR.COLORLESS)
 
 func damage(color):
-	dead()
+	if active_shield != null:
+		if active_shield.damage(color):
+			dead()
+	else:
+		dead()
 	
 func dead():
 	get_tree().get_root().get_node("World/HUD/Restart").enable()

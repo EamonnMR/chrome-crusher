@@ -5,5 +5,5 @@
 
 [node name="Foe" instance=ExtResource("1_ndrru")]
 
-[node name="MeleeWeapon" parent="." index="2" instance=ExtResource("2_1mq8c")]
+[node name="Weapon" parent="." index="2" instance=ExtResource("2_1mq8c")]
 mask = 2

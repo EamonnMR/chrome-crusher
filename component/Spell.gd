@@ -33,7 +33,7 @@ func block() -> bool:
 		_start_cooldown()
 		$ShieldGraphic.show()
 		$ShieldTimer.start()
-		parent.disable_hits()
+		parent.active_shield = self
 		collision_layer = 2
 		return true
 	return false
@@ -41,12 +41,13 @@ func block() -> bool:
 func damage(dmg_color: Util.COLOR):
 	# TODO: Bounce, etc?
 	if color != dmg_color:
-		parent.damage(color)
+		return true
+	return false
 
 func _on_timer_timeout():
 	$ShieldGraphic.hide()
 	collision_layer = 0
-	parent.enable_hits()
+	parent.active_shield = null
 
 func _start_cooldown():
 	cooldown = true
