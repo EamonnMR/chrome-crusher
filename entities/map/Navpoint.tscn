@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://coehfk4h2fp1c"]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource type="Script" path="res://entities/Navpoint.gd" id="1_idj0b"]
+[ext_resource type="Script" path="res://entities/map/Navpoint.gd" id="1_idj0b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_apv60"]
 

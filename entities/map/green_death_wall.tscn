@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://blfe7rt53y05b"]
+[gd_scene load_steps=5 format=3]
 
-[ext_resource type="Script" path="res://entities/death_wall.gd" id="1_6seyv"]
+[ext_resource type="Script" path="res://entities/map/death_wall.gd" id="1_6seyv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1smt"]
 size = Vector2(266, 20)

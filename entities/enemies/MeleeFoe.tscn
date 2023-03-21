@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://jnyq2441m2g5"]
+
+[ext_resource type="PackedScene" uid="uid://bhu1vnfq82ex4" path="res://entities/enemies/foe.tscn" id="1_wvuol"]
+[ext_resource type="PackedScene" uid="uid://bxswa1i4ft2xs" path="res://component/melee_weapon.tscn" id="2_qau0l"]
+
+[node name="Foe" instance=ExtResource("1_wvuol")]
+
+[node name="Weapon" parent="." index="2" instance=ExtResource("2_qau0l")]
+mask = 2
+
+[node name="SpotDelayTimer" parent="." index="6"]
+one_shot = true

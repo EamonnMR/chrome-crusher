@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://jnyq2441m2g5"]
-
-[ext_resource type="PackedScene" uid="uid://bhu1vnfq82ex4" path="res://entities/foe.tscn" id="1_ndrru"]
-[ext_resource type="PackedScene" uid="uid://bxswa1i4ft2xs" path="res://component/melee_weapon.tscn" id="2_1mq8c"]
-
-[node name="Foe" instance=ExtResource("1_ndrru")]
-
-[node name="Weapon" parent="." index="2" instance=ExtResource("2_1mq8c")]
-mask = 2

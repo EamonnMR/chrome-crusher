@@ -12,12 +12,16 @@ var next_patrol_node = null
 
 @export var melee: bool = true
 
+@export var spot_delay: float = 0.5
+@export var attack_delay: float = 0.2
+
 enum STATE {
 	PATROL,
 	IDLE,
 	SPOT_DELAY,
 	SHOOTING,
 	RUSHING,
+	SHOOT_DELAY,
 	ATTACK_DELAY,
 	ATTACKING,
 	SEARCHING
@@ -30,6 +34,8 @@ enum STATE {
 @onready var patrol_path = patrol_path_paths.map(self.get_node)
 
 func _ready():
+	$SpotDelayTimer.wait_time = spot_delay
+	$AttackDelayTimer.wait_time = attack_delay
 	match state:
 		STATE.PATROL:
 			change_state_patrol()
@@ -46,6 +52,9 @@ func _physics_process(delta):
 			_chase(delta, target, RUSH_SPEED)
 			if not melee:
 				$Weapon.shoot()
+		STATE.SHOOT_DELAY:
+			#_maintain_contact()
+			_face(delta, target)
 		STATE.SHOOTING:
 			_maintain_contact()
 			_face(delta, target)
@@ -59,7 +68,8 @@ func _physics_process(delta):
 			$Weapon.shoot()
 		STATE.SEARCHING:
 			_chase(delta, $LastSeenGhost, RUSH_SPEED)
-	$Label.text = str(state)
+	$Label.text = str(STATE.keys()[state])
+	$Label.rotation = - rotation
 	move_and_slide()
 	
 func _check_visible_player() -> void:
@@ -161,7 +171,7 @@ func _on_spot_delay_timer_timeout():
 	if melee:
 		_change_state_rush()
 	else:
-		_change_state_shoot()
+		_change_state_shoot_delay()
 
 func on_navpoint_reached(navpoint):
 	var index = patrol_path.find(navpoint)
@@ -178,6 +188,16 @@ func change_state_patrol():
 func _change_state_shoot():
 	state = STATE.SHOOTING
 
+func _change_state_shoot_delay():
+	state = STATE.SHOOT_DELAY
+	$AttackDelayTimer.start()
+
 func _maintain_contact():
 	pass
 
+func _on_attack_delay_timer_timeout():
+	match state:
+		STATE.ATTACK_DELAY:
+			_change_state_attacking()
+		STATE.SHOOT_DELAY:
+			_change_state_shoot()

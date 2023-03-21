@@ -1,14 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://c7qits0wpxbkm"]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="PackedScene" uid="uid://ci5ryfv1dtg7p" path="res://player.tscn" id="3_6mvui"]
 [ext_resource type="PackedScene" uid="uid://p4el6x1jfav3" path="res://ui/hud/hud.tscn" id="3_gk6yj"]
-[ext_resource type="PackedScene" uid="uid://btip2mr61iw3i" path="res://entities/placeholder_wall.tscn" id="4_btjl6"]
-[ext_resource type="PackedScene" uid="uid://ckdxk2jkw1wc3" path="res://entities/red_death_wall.tscn" id="5_hnlxj"]
-[ext_resource type="PackedScene" uid="uid://coehfk4h2fp1c" path="res://entities/Navpoint.tscn" id="6_2kv7v"]
-[ext_resource type="PackedScene" uid="uid://jnyq2441m2g5" path="res://entities/MeleeFoe.tscn" id="6_ldita"]
-[ext_resource type="PackedScene" uid="uid://cj83gvwp4u6b8" path="res://entities/RedRangedFoe.tscn" id="7_xqtvo"]
-[ext_resource type="PackedScene" uid="uid://buct3tt8nca4t" path="res://entities/blue_death_wall.tscn" id="8_lmn4s"]
-[ext_resource type="PackedScene" uid="uid://btraem74vswq" path="res://entities/exit_door.tscn" id="9_1gtwi"]
+[ext_resource type="PackedScene" uid="uid://btip2mr61iw3i" path="res://entities/map/placeholder_wall.tscn" id="4_btjl6"]
+[ext_resource type="PackedScene" path="res://entities/map/red_death_wall.tscn" id="5_hnlxj"]
+[ext_resource type="PackedScene" path="res://entities/map/Navpoint.tscn" id="6_2kv7v"]
+[ext_resource type="PackedScene" uid="uid://jnyq2441m2g5" path="res://entities/enemies/MeleeFoe.tscn" id="6_ldita"]
+[ext_resource type="PackedScene" uid="uid://cj83gvwp4u6b8" path="res://entities/enemies/RedRangedFoe.tscn" id="7_xqtvo"]
+[ext_resource type="PackedScene" path="res://entities/map/blue_death_wall.tscn" id="8_lmn4s"]
+[ext_resource type="PackedScene" path="res://entities/map/exit_door.tscn" id="9_1gtwi"]
 
 [node name="World" type="Node2D"]
 

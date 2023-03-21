@@ -1,6 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://p4el6x1jfav3"]
+[gd_scene load_steps=13 format=3]
 
-[ext_resource type="Script" path="res://SpellPanel.gd" id="1_moppp"]
+[ext_resource type="Script" path="res://ui/SpellPanel.gd" id="1_moppp"]
 [ext_resource type="Texture2D" uid="uid://u5fhp6x4i8dl" path="res://assets/j_w_bjerk_painterly_spell_cc_by/lighting-fire-1.png" id="2_wwqi3"]
 [ext_resource type="Texture2D" uid="uid://bkfmdw7xo5a01" path="res://assets/j_w_bjerk_painterly_spell_cc_by/slice-spirit-1.png" id="3_gdyqr"]
 [ext_resource type="Texture2D" uid="uid://cwh1v60ijloyk" path="res://ui/hud/progress.tres" id="3_wlyg3"]
